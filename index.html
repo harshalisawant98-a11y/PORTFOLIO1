@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LibraryDB Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background-color: #f8f9fa; font-family: Arial, sans-serif; }
+    .kpi-card { background: #fff; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    .kpi-value { font-size: 2rem; font-weight: bold; color: #0d6efd; }
+    .chart-container { margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div class="container my-4">
+    <h1 class="text-center mb-4">📚 LibraryDB Dashboard</h1>
+
+    <!-- KPI Cards -->
+    <div class="row text-center">
+      <div class="col-md-4"><div class="kpi-card"><h5>Total Books</h5><div class="kpi-value">320</div></div></div>
+      <div class="col-md-4"><div class="kpi-card"><h5>Books Issued</h5><div class="kpi-value">185</div></div></div>
+      <div class="col-md-4"><div class="kpi-card"><h5>Overdue Books</h5><div class="kpi-value">12</div></div></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-container">
+      <h4>Borrowing Trends</h4>
+      <canvas id="trendChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h4>Top Borrowed Books</h4>
+      <canvas id="topBooksChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h4>Return Status</h4>
+      <canvas id="returnChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h4>Publication Analysis</h4>
+      <canvas id="pubChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Borrowing Trends (Line Chart)
+    new Chart(document.getElementById("trendChart"), {
+      type: "line",
+      data: {
+        labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+        datasets: [{ label: "Issues", data: [10,15,20,25,30,35], borderColor: "#0d6efd", fill: false }]
+      }
+    });
+
+    // Top Borrowed Books (Bar Chart)
+    new Chart(document.getElementById("topBooksChart"), {
+      type: "bar",
+      data: {
+        labels: ["SQL Basics","Database Design","Advanced SQL"],
+        datasets: [{ label: "Borrow Count", data: [35,25,18], backgroundColor: ["#0d6efd","#198754","#ffc107"] }]
+      }
+    });
+
+    // Return Status (Pie Chart)
+    new Chart(document.getElementById("returnChart"), {
+      type: "pie",
+      data: {
+        labels: ["Returned","Overdue"],
+        datasets: [{ data: [80,20], backgroundColor: ["#198754","#dc3545"] }]
+      }
+    });
+
+    // Publication Analysis (Column Chart)
+    new Chart(document.getElementById("pubChart"), {
+      type: "bar",
+      data: {
+        labels: ["2015","2018","2020"],
+        datasets: [{ label: "Borrow Count", data: [12,20,15], backgroundColor: "#0d6efd" }]
+      }
+    });
+  </script>
+</body>
+</html>
