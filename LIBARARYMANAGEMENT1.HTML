@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LibraryDB Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background:#f9f9f9; margin:20px; }
+    header { text-align:center; color:#0056b3; }
+    .kpi-container { display:flex; justify-content:space-around; margin:20px 0; }
+    .kpi { background:#fff; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:15px; width:22%; text-align:center; }
+    .charts { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .chart { background:#fff; border-radius:8px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LibraryDB Dashboard</h1>
+    <p>SQL Analytics Visualized</p>
+  </header>
+
+  <!-- KPI Cards -->
+  <section class="kpi-container">
+    <div class="kpi"><h3>Total Books</h3><p>320</p></div>
+    <div class="kpi"><h3>Books Issued</h3><p>185</p></div>
+    <div class="kpi"><h3>Overdue Books</h3><p>12</p></div>
+    <div class="kpi"><h3>Most Borrowed</h3><p>SQL Basics</p></div>
+  </section>
+
+  <!-- Charts -->
+  <section class="charts">
+    <div class="chart">
+      <h3>Borrowing Trends</h3>
+      <canvas id="trendChart"></canvas>
+    </div>
+    <div class="chart">
+      <h3>Top Borrowed Books</h3>
+      <canvas id="topBooksChart"></canvas>
+    </div>
+    <div class="chart">
+      <h3>Return Status</h3>
+      <canvas id="returnChart"></canvas>
+    </div>
+    <div class="chart">
+      <h3>Publication Analysis</h3>
+      <canvas id="pubChart"></canvas>
+    </div>
+  </section>
+
+  <script>
+    // Borrowing Trends (Line Chart)
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{ label:'Issues', data:[10,15,20,25,30,35], borderColor:'#0056b3', fill:false }]
+      }
+    });
+
+    // Top Borrowed Books (Bar Chart)
+    new Chart(document.getElementById('topBooksChart'), {
+      type: 'bar',
+      data: {
+        labels: ['SQL Basics','Database Design','Advanced SQL'],
+        datasets: [{ label:'Borrow Count', data:[35,25,18], backgroundColor:['#0056b3','#28a745','#17a2b8'] }]
+      }
+    });
+
+    // Return Status (Pie Chart)
+    new Chart(document.getElementById('returnChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Returned','Overdue'],
+        datasets: [{ data:[80,20], backgroundColor:['#28a745','#dc3545'] }]
+      }
+    });
+
+    // Publication Analysis (Column Chart)
+    new Chart(document.getElementById('pubChart'), {
+      type: 'bar',
+      data: {
+        labels: ['2015','2018','2020'],
+        datasets: [{ label:'Borrow Count', data:[12,25,21], backgroundColor:['#6c757d','#28a745','#0056b3'] }]
+      }
+    });
+  </script>
+</body>
+</html>
